@@ -8,7 +8,7 @@ Module Program
     Sub Main(args As String())
         Dim op As Integer
 
-        Connect()
+        'Connect()
 
         Do
             Console.WriteLine("-- MENU --")
@@ -22,7 +22,8 @@ Module Program
 
             Select Case op
                 Case 1
-                    Console.WriteLine("Mostrar")
+                    Console.WriteLine("-- MOSTRAR --")
+                    Console.WriteLine(Show())
                 Case 2
                     Console.WriteLine("Registrar")
                 Case 3
@@ -45,4 +46,25 @@ Module Program
 
         connection.Open()
     End Sub
+
+    Function Show() As String
+        Connect() 'Abrimos la conexión
+        Dim sql = "SELECT * FROM alumno"
+
+        Dim cmd = New MySqlCommand(sql, connection)
+        Dim reader = cmd.ExecuteReader()
+
+        Dim result As String = ""
+        While reader.Read()
+            result &= reader("id_alumno")
+            result &= " - "
+            result &= reader("nie_alumno")
+            result &= " - "
+            result &= reader("nombre_alumno")
+            result &= VbCrLf
+        End While
+
+        connection.Close() 'Cerramos conexión
+        return result
+    End Function
 End Module
