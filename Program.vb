@@ -7,10 +7,13 @@ Module Program
 
     Sub Main(args As String())
         Dim op As Integer
+        Dim nie As Integer
+        Dim nombre As String
 
         'Connect()
 
         Do
+            Console.Clear() '<--- Limpiar la pantalla
             Console.WriteLine("-- MENU --")
             Console.WriteLine("1. Mostrar")
             Console.WriteLine("2. Registrar")
@@ -22,10 +25,18 @@ Module Program
 
             Select Case op
                 Case 1
+                    Console.Clear() '<--- Limpiar la pantalla
                     Console.WriteLine("-- MOSTRAR --")
                     Console.WriteLine(Show())
                 Case 2
-                    Console.WriteLine("Registrar")
+                    Console.WriteLine("-- REGISTRAR --")
+                    Console.Write("NIE: ")
+                    nie = Console.ReadLine()
+
+                    Console.Write("Nombre: ")
+                    nombre = Console.ReadLine()
+
+                    Console.WriteLine(Insert(nie, nombre))
                 Case 3
                     Console.WriteLine("Actualizar")
                 Case 4
@@ -35,6 +46,9 @@ Module Program
                 Case Else
                     Console.WriteLine("Opción no válida")
             End Select
+
+            Console.ReadKey()
+
         Loop While op <> 5
   
     End Sub
@@ -66,5 +80,19 @@ Module Program
 
         connection.Close() 'Cerramos conexión
         return result
+    End Function
+
+    Function Insert(nie As Integer, nombre As String) As String
+        Connect() 'Abrimos la conexión
+        Dim sql = "INSERT INTO alumno(nie_alumno, nombre_alumno) VALUES(@nie, @nombre)"
+        Dim cmd = New MySqlCommand(sql, connection)
+
+        cmd.Parameters.AddWithValue("@nie", nie) 'Asignamos el valor a la variable
+        cmd.Parameters.AddWithValue("@nombre", nombre)
+        cmd.ExecuteNonQuery() 'Ejecutamos la consulta
+
+        connection.Close() 'Cerramos conexión
+
+        Return "Registro guardado"
     End Function
 End Module

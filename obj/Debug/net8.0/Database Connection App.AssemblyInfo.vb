@@ -15,7 +15,7 @@ Imports System.Reflection
 <Assembly: System.Reflection.AssemblyCompanyAttribute("Database Connection App"),  _
  Assembly: System.Reflection.AssemblyConfigurationAttribute("Debug"),  _
  Assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0"),  _
- Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c5e71cc476b8fab83cd0ed5c73a7886946f6bcc2"),  _
+ Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+50bcf8fec98387b5670109c3ed581487cf521de5"),  _
  Assembly: System.Reflection.AssemblyProductAttribute("Database Connection App"),  _
  Assembly: System.Reflection.AssemblyTitleAttribute("Database Connection App"),  _
  Assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")> 
